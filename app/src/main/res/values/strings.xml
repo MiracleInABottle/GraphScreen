@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">GraphScreen</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="mainScreen">Device Screen</string>
+    <string name="stuff">stuff</string>
+</resources>

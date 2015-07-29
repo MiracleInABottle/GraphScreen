@@ -1,0 +1,59 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context=".MainActivity"
+    android:id="@+id/deviceScreen"
+    android:orientation="horizontal"
+    android:gravity="center"
+    android:background="#ff000000">
+
+    <android.gesture.GestureOverlayView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:id="@+id/gestureOverlayView"
+        android:layout_alignParentEnd="false">
+
+    </android.gesture.GestureOverlayView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <ImageButton
+            android:layout_width="30dp"
+            android:layout_height="150dp"
+            android:id="@+id/reverse_btn"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/ic_1leftarrow"
+            android:padding="0dp"
+            android:scaleType="fitXY"
+            android:background="#00ffffff"
+            android:contentDescription="@string/mainScreen" />
+        <brianbiggs.graphscreen.MyView android:background="#ff7d7d7d"
+            android:layout_width="500dp"
+            android:layout_height="fill_parent"
+            android:paddingLeft="20dp"
+            android:paddingBottom="40dp"
+            android:id="@+id/drawing_view" />
+        <ImageButton
+            android:layout_width="30dp"
+            android:layout_height="150dp"
+            android:id="@+id/advance_btn"
+            android:layout_gravity="center_vertical"
+            android:adjustViewBounds="false"
+            android:cropToPadding="false"
+            android:nestedScrollingEnabled="false"
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_1rightarrow"
+            android:padding="0dp"
+            android:background="#00ffffff"
+            android:contentDescription="@string/stuff" />
+    </LinearLayout>
+
+
+</RelativeLayout>
+

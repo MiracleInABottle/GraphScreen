@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/app/src/main/java/brianbiggs/graphscreen/CurveFit.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/brianbiggs/graphscreen/DataPoint.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/brianbiggs/graphscreen/DataSeries.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/brianbiggs/graphscreen/Graph.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/brianbiggs/graphscreen/GraphView.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/brianbiggs/graphscreen/GraphingActivity.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/brianbiggs/graphscreen/Line.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/brianbiggs/graphscreen/UnitSpace.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/src/main/res/drawable-hdpi" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/src/main/res/drawable-hdpi/ic_1leftarrow.png" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/app/src/main/res/drawable-hdpi/ic_1rightarrow.png" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/app/src/main/res/drawable-mdpi" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/src/main/res/drawable-xhdpi" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/src/main/res/drawable-xxhdpi" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/src/main/res/drawable-xxxhdpi" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/src/main/res/layout/activity_graphing.xml" charset="UTF-8" />
+  </component>
+</project>
