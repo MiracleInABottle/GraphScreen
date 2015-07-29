@@ -23,10 +23,12 @@ public class MainActivity extends Activity {
         drawingSurface = (MyView)findViewById(R.id.drawing_view);
         scaleGestureDetector = new ScaleGestureDetector(this, new ScaleListener());
 
+
         b2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 drawingSurface.setPx(drawingSurface.getPx()+10);
+
                 drawingSurface.invalidate();
             }
         });
