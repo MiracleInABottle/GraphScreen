@@ -5,4 +5,5 @@
     <string name="action_settings">Settings</string>
     <string name="mainScreen">Device Screen</string>
     <string name="stuff">stuff</string>
+    <string name="optionButtonTxt">options button</string>
 </resources>

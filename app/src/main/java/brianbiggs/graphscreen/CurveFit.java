@@ -54,8 +54,8 @@ public class CurveFit {
 
     /**
      * Gets the parameters of the fit that was performed on the data. The options are:
-     * 1. Linear: y(x) = Ax + B the returned parameters are (A,B)
-     * 2. Quadratic: y(x) = Ax^2 + Bx + C the returned parameters are (A,B,C)
+     * 1. Linear: y(x) = A + Bx the returned parameters are (A,B)
+     * 2. Quadratic: y(x) = A + Bx + Cx^2 the returned parameters are (A,B,C)
      * 3. Exponential: y(x) = Aexp(Bx) the returned parameters are (A,B)
      * @return the parameters for the specified fit
      */
@@ -77,7 +77,7 @@ public class CurveFit {
     }
     /**
      * Gets the parameters of the linear fit that was performed on the data.
-     * 1. Linear: y(x) = Ax + B the returned parameters are (A,B)
+     * 1. Linear: y(x) = A + Bx the returned parameters are (A,B)
      * @return the parameters for a linear fit
      */
     private double[] getLinearParameters(){
@@ -94,7 +94,7 @@ public class CurveFit {
     }
     /**
      * Gets the parameters of the quadratic fit that was performed on the data.
-     * 2. Quadratic: y(x) = Ax^2 + Bx + C the returned parameters are (A,B,C)
+     * 2. Quadratic: y(x) = A + Bx + Cx^2 the returned parameters are (A,B,C)
      * @return the parameters for a quadratic fit
      */
     private double[] getQuadParameters(){

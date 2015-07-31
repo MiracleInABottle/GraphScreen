@@ -14,12 +14,14 @@ public class MainActivity extends Activity {
     private ScaleGestureDetector scaleGestureDetector;
     private Matrix matrix = new Matrix();
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ImageButton b1 = (ImageButton)findViewById(R.id.reverse_btn);
         ImageButton b2 = (ImageButton)findViewById(R.id.advance_btn);
+
         drawingSurface = (MyView)findViewById(R.id.drawing_view);
         scaleGestureDetector = new ScaleGestureDetector(this, new ScaleListener());
 
@@ -39,6 +41,7 @@ public class MainActivity extends Activity {
                 drawingSurface.invalidate();
             }
         });
+
     }
     public boolean onTouchEvent(MotionEvent ev) {
         scaleGestureDetector.onTouchEvent(ev);
