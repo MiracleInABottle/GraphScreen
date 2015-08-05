@@ -32,7 +32,7 @@ public class DataSeries {
      * @param points the array of DataPoints which is initially in the series
      * @param numPoints the number of points added
      */
-    public DataSeries(DataPoint [] points, int numPoints){
+    public DataSeries(DataPoint[] points, int numPoints){
         this.points = points;
         this.numPoints = numPoints;
         if(numPoints != 0){
@@ -55,7 +55,7 @@ public class DataSeries {
      * @param yPoints the array of y values added
      * @param numPoints the number of points added
      */
-    public DataSeries(double [] xPoints, double [] yPoints, int numPoints){
+    public DataSeries(double[] xPoints, double[] yPoints, int numPoints){
         points = new DataPoint[numPoints];
         this.numPoints = numPoints;
         if(numPoints != 0){

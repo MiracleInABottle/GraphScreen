@@ -3,6 +3,8 @@ package brianbiggs.graphscreen;
 import android.graphics.Point;
 import android.graphics.Rect;
 
+import java.text.DecimalFormat;
+
 /**
  * The Graph class encapsulates all of the computations needed to draw a grid, plot points,
  * draw lines, fill areas under a curve. To paint grid lines, use the method getGridlines, which
@@ -26,6 +28,9 @@ public class Graph {
     private Line[] horizontalLines;
     private Line[] verticalLines;
     private CurveFit fit;
+    private int curveType;
+    private double[] fitParam;
+    private Point[] fitPoints;
 
 
 
@@ -100,6 +105,7 @@ public class Graph {
             }
         }
         return tickSize;
+
     }
 
     /**
@@ -170,7 +176,58 @@ public class Graph {
         computeVerticalGrid();
     }
 
+    public void computeFit(){
+        if(data.getNumPoints() > 1) {
+            if (fit == null) {
+                fit = new CurveFit(data, curveType);
+                fitParam = fit.getParameters();
+            }
+            switch(curveType){
+                case CurveFit.QUAD:
+                    int length = unitSpace.toPixelX( unitSpace.getMaxX())-unitSpace.toPixelX( unitSpace.getMinX());
+                    fitPoints = new Point[length];
+                    int x;
+                    for(int i = 0; i< length; i++){
+                        x = (unitSpace.toPixelX(unitSpace.getMinX())) + i;
+                        fitPoints[i] = new Point();
+                        fitPoints[i].x = x;
+                        fitPoints[i].y = unitSpace.toPixelY(fitParam[0] + fitParam[1]*unitSpace.toUserX(x) + fitParam[2]*unitSpace.toUserX(x)*unitSpace.toUserX(x));
 
+
+                    }
+
+                    break;
+                case CurveFit.EXP:
+                    break;
+
+                default:
+                    fitPoints = new Point[2];
+                    fitPoints[0] = new Point();
+                    fitPoints[0].x =   unitSpace.toPixelX( unitSpace.getMinX());
+                    fitPoints[0].y =   unitSpace.toPixelY(fitParam[1] * unitSpace.getMinX() + fitParam[0]);
+                    fitPoints[1] = new Point();
+                    fitPoints[1].x =   unitSpace.toPixelX( unitSpace.getMaxX());
+                    fitPoints[1].y =   unitSpace.toPixelY( fitParam[1]*unitSpace.getMaxX() + fitParam[0]);
+                    break;
+
+            }
+        }
+    }
+
+    public Point[] getFitPoints(){
+        if(fitPoints == null){
+            computeFit();
+        }
+        return this.fitPoints;
+    }
+
+    public void setFitType(int curveType){
+        this.curveType = curveType;
+    }
+
+    public int getCurveType(){
+        return this.curveType;
+    }
 
     public Line[] getVerticalGridlines(){
         return this.verticalLines;
@@ -195,9 +252,12 @@ public class Graph {
         }
         horizontalLines = new Line[i+1];
         horizontalLabels = new String[i+1];
+        double y;
+        DecimalFormat dec = new DecimalFormat("@##");
         for(int j = 0; j <= i; j++){
-            yTick = unitSpace.toPixelY((min + j * gridSeriesY)*Math.pow(10,ny));
-            horizontalLabels[j] = "" + (min + j * gridSeriesY)*Math.pow(10,ny);
+            y = (min + j * gridSeriesY)*Math.pow(10,ny);
+            yTick = unitSpace.toPixelY(y);
+            horizontalLabels[j] = "" + dec.format(y);
             horizontalLines[j] = new Line(unitSpace.getLeft(), yTick, unitSpace.getRight(), yTick);
         }
     }
@@ -222,8 +282,11 @@ public class Graph {
         }
         verticalLines = new Line[i+1];
         verticalLabels = new String[i+1];
+        DecimalFormat dec = new DecimalFormat("@##");
+        double x;
         for(int j = 0; j <= i; j++){
-            verticalLabels[j] = "" + (min + j*gridSeriesX)*Math.pow(10,nx);
+            x = (min + j*gridSeriesX)*Math.pow(10,nx);
+            verticalLabels[j] = "" + dec.format(x);
             xTick = unitSpace.toPixelX((min + j*gridSeriesX)*Math.pow(10,nx));
             verticalLines[j] = new Line(xTick, unitSpace.getTop(), xTick, unitSpace.getBottom());
         }

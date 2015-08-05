@@ -82,13 +82,13 @@ public class MyView extends View {
         }
     }
 
+
     private void init(){
-        Rect drawingArea = new Rect(getPaddingLeft(), getPaddingTop(), getRight()-getPaddingRight()-150, getBottom()-getPaddingBottom());
-//        Rect drawingArea = new Rect(10, 10, 1680, getBottom()-getPaddingBottom());
-        double [] xPoints = {-10.0, 20, 40, 20.2, 30};
-        double [] yPoints = {2, 40, 1.0, 2, -10.0};
-        DataSeries data = new DataSeries(xPoints, yPoints, 5);
+        Rect drawingArea = new Rect(getLeft()+getPaddingLeft(), getTop()+getPaddingTop(), getRight()-getPaddingRight(), getBottom()+getPaddingBottom());
+        double [] xPoints = {0,0.267,0.50,0.701,0.901,1.101,1.301,1.502,1.702};
+        double [] yPoints = {0,0.10,0.2,0.3,0.35,0.3,0.2,0.1,0.0};
+        DataSeries data = new DataSeries(xPoints, yPoints, 9);
         graph = new Graph(data, drawingArea);
-        graph.addPoint(100,5);
+        graph.setFitType(CurveFit.QUAD);
     }
 }

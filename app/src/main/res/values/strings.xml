@@ -6,4 +6,5 @@
     <string name="mainScreen">Device Screen</string>
     <string name="stuff">stuff</string>
     <string name="optionButtonTxt">options button</string>
+    <string name="linearBtn">Linear Fit</string>
 </resources>

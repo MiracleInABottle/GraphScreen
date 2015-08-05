@@ -1,7 +1,7 @@
 package brianbiggs.graphscreen;
 
-import android.graphics.Rect;
 import android.graphics.Point;
+import android.graphics.Rect;
 
 /**
  * A UnitSpace holds defines a 2D space, x and y, and performs
@@ -143,6 +143,9 @@ public class UnitSpace {
         computeOrigin();
     }
 
+    public double getMaxX(){ return this.maxX;}
+
+
     /**
      * Sets the y value corresponding with the top edge of the drawing surface. Recomputes the scale
      * and origin to compensate for the new top edge value.
@@ -155,6 +158,7 @@ public class UnitSpace {
         computeOrigin();
     }
 
+    public double getMaxY(){ return this.maxY;}
 
     /**
      * Determines the number of pixels per user unit (e.g. pixels/meter) for the X axis. Returns
@@ -213,6 +217,10 @@ public class UnitSpace {
     public int toPixelY(double userY) {
         int py = origin.y - (int) Math.round(userY * scaleY);
         return py;
+    }
+
+    public double toUserX(int pixelX){
+        return (pixelX - origin.x)/scaleX;
     }
 
     /**

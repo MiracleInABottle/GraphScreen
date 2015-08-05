@@ -21,8 +21,47 @@
     </android.gesture.GestureOverlayView>
 
     <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="30dp"
+        android:gravity="center">
+        <RadioGroup
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="horizontal"
+            android:gravity="center">
+            <RadioButton
+                android:layout_width="150dp"
+                android:layout_height="30dp"
+                android:text="Linear Fit"
+                android:id="@+id/linearFitRadioBtn"
+                android:checked="true"
+                android:textColor="#ffffff"
+                android:buttonTint="#0090ff" />
+            <RadioButton
+                android:layout_width="150dp"
+                android:layout_height="30dp"
+                android:text="Quadratic Fit"
+                android:id="@+id/quadraticFitRadioBtn"
+                android:checked="false"
+                android:textColor="#ffffff"
+                android:buttonTint="#0090ff" />
+            <RadioButton
+                android:layout_width="150dp"
+                android:layout_height="30dp"
+                android:text="Exponential Fit"
+                android:id="@+id/exponentialFitRadioBtn"
+                android:checked="false"
+                android:textColor="#ffffff"
+                android:buttonTint="#0090ff" />
+        </RadioGroup>
+
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="fill_parent"
+        android:layout_marginTop="30dp">
         <ImageButton
             android:layout_width="30dp"
             android:layout_height="150dp"
@@ -36,7 +75,7 @@
 
         <brianbiggs.graphscreen.MyView
             android:background="#ff7d7d7d"
-            android:layout_width="1600px"
+            android:layout_width="1500px"
             android:layout_height="fill_parent"
             android:paddingLeft="0px"
             android:paddingBottom="0px"
