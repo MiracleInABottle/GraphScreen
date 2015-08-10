@@ -1,5 +1,7 @@
 package brianbiggs.graphscreen;
 
+import android.util.Log;
+
 /**
  * The CurveFit class determines the linear, quadratic, or exponential fit of
  * a series of data. It assumes that there is no error in x (the independent variable)
@@ -119,13 +121,29 @@ public class CurveFit {
         DataSeries currentData = this.series;
         double[] xVals = new double[series.getNumPoints()];
         double[] yVals = new double[series.getNumPoints()];
+        //look for any y value 0 or under 0
+        double mostNegative = 0.01;
+        for(int i = 0; i<series.getNumPoints(); i++){
+            if(series.getPointAt(i).y < mostNegative){
+                mostNegative = series.getPointAt(i).y;
+            }
+
+        }
         for(int i = 0; i<series.getNumPoints(); i++){
             xVals[i] = series.getPointAt(i).x;
-            yVals[i] = Math.log(series.getPointAt(i).y);
+            yVals[i] = Math.log(series.getPointAt(i).y - mostNegative);
+            Log.e("y ", "" + yVals[i]);
         }
         DataSeries tempData = new DataSeries(xVals, yVals, series.getNumPoints());
         series = tempData;
         double[] param = getLinearParameters();
+        Log.i("param0", "" +param[0]);
+        Log.i("param1", ""+param[1]);
+        /*Intent intent = new Intent();
+        Bundle b = new Bundle();
+        intent.putExtra("numbers",b);
+        intent.putExtra("param0",param[0]);
+        intent.putExtra("param1",param[1]);*/
         param[0] = Math.exp(param[0]);
         series = currentData;
         return param;

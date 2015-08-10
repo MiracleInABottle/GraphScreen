@@ -2,6 +2,7 @@ package brianbiggs.graphscreen;
 
 import android.graphics.Point;
 import android.graphics.Rect;
+import android.util.Log;
 
 import java.text.DecimalFormat;
 
@@ -35,7 +36,8 @@ public class Graph {
 
 
     /**
-     * Constructs a Graph according to the data parameters entered.
+     * Constructs a Graph according to the parameters, constructing an empty DataSeries which must be
+     * populated
      * @param minX the minimum value of the data being plotted on the x axis
      * @param minY the minimum value of the data being plotted on the y axis
      * @param maxX the maximum value of the data being plotted on the x axis
@@ -54,7 +56,7 @@ public class Graph {
     }
 
     /**
-     * Constructs a Graph according to the data parameters entered.
+     * Constructs a Graph according to the data, autoscaling to the values in the data
      * @param data the DataPoints which are to be plotted. By default, the graph autoscales to these points
      * @param area the rectangular area (in pixels) upon which this graph will be drawn
      */
@@ -145,9 +147,6 @@ public class Graph {
         return tickSize;
     }
 
-
-
-
     /**
      * Returns an array of Points which are to be drawn. These points are in pixels.
      * @returns points
@@ -164,6 +163,12 @@ public class Graph {
         return points;
     }
 
+    /**
+     * Adds a point to the Graph, automatically updating the autoscale and the grid. It will also update
+     * the fit of the data
+     * @param x the x value of the point to be added
+     * @param y the y value of the point to be added
+     */
     public void addPoint(double x, double y){
         data.addPoint(x,y);
         unitSpace.setMaxX(data.getMaximumX());
@@ -174,9 +179,26 @@ public class Graph {
         findGridScaleY();
         computeHorizontalGrid();
         computeVerticalGrid();
+        fit = new CurveFit(data, curveType); //have to recompute the fit
+        fitParam = fit.getParameters(); //get the new parameters considering the new fit
+        computeFit(); //compute the pixel locations of this fit line
     }
 
-    public void computeFit(){
+    /**
+     * If the drawing area changes (e.g. the screen is resized) then the grid and fitpoints need to
+     * be recomputed
+     */
+    public void setDrawingArea(){
+
+    }
+
+    /**
+     * Computes the best fit line according to the options chosen. The graph can fit linear,
+     * quadratic, and exponential lines to the data. This function is called whenever a) the data
+     * is changed, b) the unitspace is changed. The fitPoints are in pixels, but the CurveFit holds
+     * the fit for the actual data (which does not change unless actual data points are added/removed)
+     */
+    private void computeFit(){
         if(data.getNumPoints() > 1) {
             if (fit == null) {
                 fit = new CurveFit(data, curveType);
@@ -185,19 +207,28 @@ public class Graph {
             switch(curveType){
                 case CurveFit.QUAD:
                     int length = unitSpace.toPixelX( unitSpace.getMaxX())-unitSpace.toPixelX( unitSpace.getMinX());
-                    fitPoints = new Point[length];
+                    fitPoints = new Point[length]; //adding a point for every pixel between the left and right edges
                     int x;
                     for(int i = 0; i< length; i++){
                         x = (unitSpace.toPixelX(unitSpace.getMinX())) + i;
                         fitPoints[i] = new Point();
                         fitPoints[i].x = x;
                         fitPoints[i].y = unitSpace.toPixelY(fitParam[0] + fitParam[1]*unitSpace.toUserX(x) + fitParam[2]*unitSpace.toUserX(x)*unitSpace.toUserX(x));
-
-
                     }
 
                     break;
                 case CurveFit.EXP:
+                    length = unitSpace.toPixelX( unitSpace.getMaxX())-unitSpace.toPixelX( unitSpace.getMinX());
+                    fitPoints = new Point[length]; //adding a point for every pixel between the left and right edges
+                    for(int i = 0; i< length; i++){
+                        x = (unitSpace.toPixelX(unitSpace.getMinX())) + i;
+                        fitPoints[i] = new Point();
+                        fitPoints[i].x = x;
+                        fitPoints[i].y = unitSpace.toPixelY(fitParam[0]*Math.exp(fitParam[1]*unitSpace.toUserX(x)));
+
+                    }
+                    Log.i("fit param", ""+ fitParam[0]);
+                    Log.i("fit param", ""+ fitParam[1]);
                     break;
 
                 default:
@@ -225,8 +256,12 @@ public class Graph {
         this.curveType = curveType;
     }
 
-    public int getCurveType(){
+    public int getFitType(){
         return this.curveType;
+    }
+
+    public CurveFit getFit(){
+        return this.fit;
     }
 
     public Line[] getVerticalGridlines(){
