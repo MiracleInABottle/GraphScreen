@@ -10,7 +10,7 @@ import android.os.Bundle;
  * Created by biggs_000 on 8/7/2015.
  */
 public class BasicAlertDialogFragment extends DialogFragment{
-//    Intent intent = getIntent();
+
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
 
@@ -20,19 +20,11 @@ public class BasicAlertDialogFragment extends DialogFragment{
                 .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                     }
-                })
-                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                });
+                /*.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                     }
-                });
+                });*/
         return builder.create();
     }
-
-    /*public Intent getIntent() {
-        Bundle bundle = intent.getBundleExtra("numbers");
-        String param0 = intent.getStringExtra("param0");
-        String param1 = intent.getStringExtra("param1");
-
-        return intent;
-    }*/
 }

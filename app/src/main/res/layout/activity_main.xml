@@ -35,7 +35,7 @@
                 android:layout_height="25dp"
                 android:text="Linear Fit"
                 android:id="@+id/linearFitRadioBtn"
-                android:checked="true"
+                android:checked="false"
                 android:textColor="#ffffff"
                 android:buttonTint="#0090ff" />
             <RadioButton
@@ -43,7 +43,7 @@
                 android:layout_height="25dp"
                 android:text="Quadratic Fit"
                 android:id="@+id/quadraticFitRadioBtn"
-                android:checked="false"
+                android:checked="true"
                 android:textColor="#ffffff"
                 android:buttonTint="#0090ff" />
             <RadioButton
