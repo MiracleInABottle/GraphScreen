@@ -71,17 +71,33 @@
             android:padding="0dp"
             android:scaleType="fitXY"
             android:background="#00ffffff"
-            android:contentDescription="@string/mainScreen" />
+            android:contentDescription="@string/mainScreen"
+            android:layout_marginBottom="20dp" />
 
-        <brianbiggs.graphscreen.MyView
-            android:background="#ff7d7d7d"
+        <LinearLayout
+            android:orientation="vertical"
             android:layout_width="1500px"
-            android:layout_height="fill_parent"
-            android:paddingLeft="0px"
-            android:paddingBottom="0px"
-            android:paddingRight="0px"
-            android:paddingTop="0px"
-            android:id="@+id/drawing_view" />
+            android:layout_height="match_parent">
+
+            <brianbiggs.graphscreen.MyView
+                android:background="#ff7d7d7d"
+                android:layout_width="1500px"
+                android:layout_height="250dp"
+                android:paddingLeft="0px"
+                android:paddingBottom="0px"
+                android:paddingRight="0px"
+                android:paddingTop="0px"
+                android:id="@+id/drawing_view" />
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:id="@+id/infoTextView"
+                android:textColor="#ffffff"
+                android:gravity="center"
+                android:hint="Parameters"
+                android:textColorHint="#a0c0c0c0" />
+        </LinearLayout>
 
         <LinearLayout
             android:orientation="vertical"
@@ -101,7 +117,7 @@
                 android:padding="0dp"
                 android:background="#00ffffff"
                 android:contentDescription="@string/stuff"
-                android:layout_marginTop="60dp" />
+                android:layout_marginTop="40dp" />
 
             <ImageButton
                 android:layout_width="30dp"

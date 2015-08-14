@@ -9,6 +9,7 @@ import android.os.Bundle;
 /**
  * Created by biggs_000 on 8/7/2015.
  */
+
 public class BasicAlertDialogFragment extends DialogFragment{
 
     @Override
@@ -16,7 +17,7 @@ public class BasicAlertDialogFragment extends DialogFragment{
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 
-        builder.setMessage("Formula goes here, ok?")
+        builder.setMessage("Super advanced feature:COMING SOON!")
                 .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                     }

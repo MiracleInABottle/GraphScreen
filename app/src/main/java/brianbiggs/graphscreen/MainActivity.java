@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.ImageButton;
 import android.widget.RadioButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -17,6 +18,8 @@ public class MainActivity extends Activity {
     private int curve;
     double [] xPoints = null;
     double [] yPoints = null;
+    DataSeries data = new DataSeries();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,46 +62,61 @@ public class MainActivity extends Activity {
         b2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                TextView info = (TextView)findViewById(R.id.infoTextView);
 
+                drawingSurface.clearFocus();
                 xPoints = xP2;
-                yPoints = yP1;
-                final DataSeries data = new DataSeries(xPoints, yPoints, 9);
+                yPoints = yP2;
+                data = new DataSeries(xPoints, yPoints, 9);
                 drawingSurface.setCurveType(curve);
                 drawingSurface.setData(data);
-                drawingSurface.invalidate();
                 CurveFit fit = drawingSurface.getFit();
+                String p = "";
+
                 if (fit != null) {
                     double[] param = fit.getParameters();
                     if (param != null) {
+
                         for (int i = 0; i < param.length; i++) {
                             Log.i("fitparam", "" + param[i]);
+
+                            p = p + param[i] + "    ";
+                            info.setText(p);
+
                         }
                     }
                 }
-
-                Toast.makeText(MainActivity.this, "Next button pressed", Toast.LENGTH_SHORT)
-                        .show();
+                drawingSurface.invalidate();
+                info.setText(p);
+                Toast.makeText(MainActivity.this, "Next button pressed", Toast.LENGTH_SHORT).show();
             }
+
         });
         b1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                TextView info = (TextView)findViewById(R.id.infoTextView);
 
                 xPoints = xP1;
                 yPoints = yP1;
-                final DataSeries data = new DataSeries(xPoints, yPoints, 9);
+                data = new DataSeries(xPoints, yPoints, 9);
                 drawingSurface.setCurveType(curve);
                 drawingSurface.setData(data);
-                drawingSurface.invalidate();
                 CurveFit fit = drawingSurface.getFit();
+                String p = "";
                 if (fit != null) {
                     double[] param = fit.getParameters();
                     if (param != null) {
                         for (int i = 0; i < param.length; i++) {
                             Log.i("fitparam", "" + param[i]);
+                            p = p + param[i] + "    ";
+                            info.setText(p);
                         }
                     }
                 }
+                drawingSurface.invalidate();
+                info.setText(p);
+
                 Toast.makeText(MainActivity.this, "Back button pressed", Toast.LENGTH_SHORT)
                         .show();
             }

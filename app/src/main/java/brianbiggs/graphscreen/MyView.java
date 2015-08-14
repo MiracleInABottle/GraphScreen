@@ -67,7 +67,7 @@ public class MyView extends View {
         }
     }
     private void init(){
-        Rect drawingArea = new Rect(getLeft()+getPaddingLeft(), getTop()+getPaddingTop(), getRight()-getPaddingRight(), getBottom()-getPaddingBottom());
+        Rect drawingArea = new Rect(getLeft()+getPaddingLeft(), getTop()+getPaddingTop(), getRight()-getPaddingRight(), getBottom()+getPaddingBottom());
         if(data != null){
             graph = new Graph(data, drawingArea);
             graph.setFitType(fitType);

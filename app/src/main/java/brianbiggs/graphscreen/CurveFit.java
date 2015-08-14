@@ -139,11 +139,6 @@ public class CurveFit {
         double[] param = getLinearParameters();
         Log.i("param0", "" +param[0]);
         Log.i("param1", ""+param[1]);
-        /*Intent intent = new Intent();
-        Bundle b = new Bundle();
-        intent.putExtra("numbers",b);
-        intent.putExtra("param0",param[0]);
-        intent.putExtra("param1",param[1]);*/
         param[0] = Math.exp(param[0]);
         series = currentData;
         return param;
