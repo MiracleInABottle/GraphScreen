@@ -95,8 +95,8 @@
                 android:id="@+id/infoTextView"
                 android:textColor="#ffffff"
                 android:gravity="center"
-                android:hint="Parameters"
-                android:textColorHint="#a0c0c0c0" />
+                android:textColorHint="#a0c0c0c0"
+                android:hint="Please like us on Twitter, FaceBook, and Instagram!" />
         </LinearLayout>
 
         <LinearLayout
